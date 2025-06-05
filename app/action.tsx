@@ -1,0 +1,23 @@
+'use server';
+
+const MAX_LIMIT = 8; // Max amount of animes fetched at once
+
+
+export async function fetchAnime(page: number){
+    const response = await fetch(
+        `https://api.jikan.moe/v4/top/anime?page=${page}&limit=${MAX_LIMIT}`
+    );
+
+
+    const data = await response.json();
+
+    const simplifiedData = data.data.map((anime: any) => ({
+        mal_id: anime.mal_id,
+        title: anime.title,
+        image_url: anime.images.jpg.image_url,
+        episodes: anime.episodes,
+        score: anime.score
+    }))
+
+    return simplifiedData;
+}
