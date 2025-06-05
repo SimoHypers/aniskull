@@ -1,6 +1,6 @@
 'use server';
 
-const MAX_LIMIT = 8; // Max amount of animes fetched at once
+const MAX_LIMIT = 25; // Max amount of animes fetched at once
 
 
 export async function fetchAnime(page: number){
@@ -16,7 +16,9 @@ export async function fetchAnime(page: number){
         title: anime.title,
         image_url: anime.images.jpg.image_url,
         episodes: anime.episodes,
-        score: anime.score
+        score: anime.score,
+        status: anime.status,
+        year: anime.year,
     }))
 
     return simplifiedData;
