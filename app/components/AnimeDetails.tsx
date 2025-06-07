@@ -1,35 +1,70 @@
 "use client";
 
 import { Button } from "@/app/components/ui/button";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Star } from "lucide-react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 interface Anime {
   title: string;
   title_japanese: string;
+  url: string;
+  score: string;
+  scored_by: string;
+  rating: string;
+  status: string;
+  season: string;
+  year: string;
+  synopsis: string;
 }
 
 interface Props {
   anime: Anime;
 }
 
+
 const AnimeDetails = ({ anime }: Props) => {
   const router = useRouter();
 
+  function AnimeStatus(status: string){
+    switch(status){
+      case "Finished Airing":
+        return "bg-blue-500 text-white";
+      case "Currently Airing":
+        return "bg-green-500 text-white";
+      case "Not yet aired":
+        return "bg-yellow-500 text-black";
+      default:
+        return "bg-slate-500 text-white";
+    }
+  }
+
   return (
     <main>
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-3 mx-4">
         <Button
-          className="place-self-start my-4 ml-4 bg-card rounded-sm border cursor-pointer"
+          className="place-self-start my-6 bg-card rounded-sm border cursor-pointer"
           onClick={() => router.back()}
         >
           <ArrowLeft />
           Back
         </Button>
-        <div>{anime.title}</div>
-        <div>{anime.title_japanese}</div>
-        <div>items</div>
-        <div>synopsis</div>
+        <Link href={anime.url} target="_blank" className="w-70">
+          <div className="font-bold text-3xl underline underline-offset-4 hover:text-primary">{anime.title}</div>
+        </Link>
+        <div className="font-semibold text-lg italic text-muted-foreground">{anime.title_japanese}</div>
+        <div className="flex flex-row justify-baseline gap-2 text-xs">
+            {anime.score && (
+              <div className="flex flex-row items-center justify-center gap-2 bg-accent p-1.5 px-2.5 rounded-3xl">
+                <div className="flex flex-row justify-center gap-2 font-bold"><Star className="w-4 h-4 text-yellow-300"/>{anime.score}</div>
+                <div className="italic text-muted-foreground">({anime.scored_by})</div>
+              </div>
+            )}
+          <div className="border rounded-3xl p-2 px-3 text-center font-semibold">{anime.rating}</div>
+          <div className={`border rounded-3xl p-2 px-3 text-center font-semibold ${AnimeStatus(anime.status)}`}>{anime.status}</div>
+          <div className="border rounded-3xl p-2 px-3 text-center font-semibold capitalize">{anime.season} {anime.year}</div>
+        </div>
+        <div className="text-md mt-2 max-w-full md:max-w-2xl">{anime.synopsis}</div>
         <div>picture</div>
       </div>
     </main>
