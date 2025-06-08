@@ -1,6 +1,7 @@
 'use server';
 
 const MAX_LIMIT = 25; // Max amount of animes fetched at once
+const MAX_SEARCH_LIMIT = 10;
 
 
 export async function fetchAnime(page: number){
@@ -22,4 +23,15 @@ export async function fetchAnime(page: number){
     }))
 
     return simplifiedData;
+}
+
+
+export async function fetchSearchAnime(searchedAnime: string){
+    const response = await fetch(
+        `https://api.jikan.moe/v4/anime?q=${searchedAnime}&limit=${MAX_SEARCH_LIMIT}`
+    )
+
+    const data = await response.json();
+
+    return data.data
 }
