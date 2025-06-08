@@ -2,6 +2,7 @@
 
 import { Button } from "@/app/components/ui/button";
 import { ArrowLeft, Star } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -16,6 +17,12 @@ interface Anime {
   season: string;
   year: string;
   synopsis: string;
+  images: {
+    jpg: {
+      image_url: string;
+      large_image_url: string;
+    }
+  }
 }
 
 interface Props {
@@ -41,31 +48,39 @@ const AnimeDetails = ({ anime }: Props) => {
 
   return (
     <main>
-      <div className="flex flex-col gap-3 mx-4">
-        <Button
-          className="place-self-start my-6 bg-card rounded-sm border cursor-pointer"
-          onClick={() => router.back()}
-        >
-          <ArrowLeft />
-          Back
-        </Button>
-        <Link href={anime.url} target="_blank" className="w-70">
-          <div className="font-bold text-3xl underline underline-offset-4 hover:text-primary">{anime.title}</div>
-        </Link>
-        <div className="font-semibold text-lg italic text-muted-foreground">{anime.title_japanese}</div>
-        <div className="flex flex-row justify-baseline gap-2 text-xs">
-            {anime.score && (
-              <div className="flex flex-row items-center justify-center gap-2 bg-accent p-1.5 px-2.5 rounded-3xl">
-                <div className="flex flex-row justify-center gap-2 font-bold"><Star className="w-4 h-4 text-yellow-300"/>{anime.score}</div>
-                <div className="italic text-muted-foreground">({anime.scored_by})</div>
-              </div>
-            )}
-          <div className="border rounded-3xl p-2 px-3 text-center font-semibold">{anime.rating}</div>
-          <div className={`border rounded-3xl p-2 px-3 text-center font-semibold ${AnimeStatus(anime.status)}`}>{anime.status}</div>
-          <div className="border rounded-3xl p-2 px-3 text-center font-semibold capitalize">{anime.season} {anime.year}</div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 md:mx-16 lg:mx-26 xl:mx-40">
+        <div className="flex flex-col gap-3 mx-4 justify-baseline">
+          <Button
+            className="place-self-start my-6 bg-card rounded-sm border cursor-pointer"
+            onClick={() => router.back()}
+          >
+            <ArrowLeft />
+            Back
+          </Button>
+          <Link href={anime.url} target="_blank" className="w-70">
+            <div className="font-bold text-3xl underline underline-offset-4 hover:text-primary">{anime.title}</div>
+          </Link>
+          <div className="font-semibold text-lg italic text-muted-foreground">{anime.title_japanese}</div>
+          <div className="flex flex-row justify-baseline gap-2 text-xs">
+              {anime.score && (
+                <div className="flex flex-row items-center justify-center gap-2 bg-accent p-1.5 px-2.5 rounded-3xl">
+                  <div className="flex flex-row justify-center gap-2 font-bold"><Star className="w-4 h-4 text-yellow-300"/>{anime.score}</div>
+                  <div className="italic text-muted-foreground">({anime.scored_by})</div>
+                </div>
+              )}
+            <div className="border rounded-3xl p-2 px-3 text-center font-semibold">{anime.rating}</div>
+            <div className={`border rounded-3xl p-2 px-3 text-center font-semibold ${AnimeStatus(anime.status)}`}>{anime.status}</div>
+            <div className="border rounded-3xl p-2 px-3 text-center font-semibold capitalize">{anime.season} {anime.year}</div>
+          </div>
+          <div className="text-md mt-2 max-w-full md:max-w-2xl">{anime.synopsis}</div>
         </div>
-        <div className="text-md mt-2 max-w-full md:max-w-2xl">{anime.synopsis}</div>
-        <div>picture</div>
+        <div className="flex flex-col justify-end items-end gap-4">
+          <Image src={anime.images.jpg.large_image_url || anime.images.jpg.image_url} alt={anime.title} width={450} height={300}
+          className="border-2 rounded-2xl border-primary"
+          />
+          <div>trailer</div>
+          <div></div>
+        </div>
       </div>
     </main>
   );
