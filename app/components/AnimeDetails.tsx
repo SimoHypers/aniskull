@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/app/components/ui/button";
-import { ArrowLeft, Star } from "lucide-react";
+import { ArrowLeft, Play, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -22,6 +22,9 @@ interface Anime {
       image_url: string;
       large_image_url: string;
     }
+  }
+  trailer: {
+    url: string;
   }
 }
 
@@ -48,7 +51,7 @@ const AnimeDetails = ({ anime }: Props) => {
 
   return (
     <main>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 md:mx-16 lg:mx-26 xl:mx-40">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 md:mx-16 lg:mx-26">
         <div className="flex flex-col gap-3 mx-4 justify-baseline">
           <Button
             className="place-self-start my-6 bg-card rounded-sm border cursor-pointer"
@@ -75,9 +78,14 @@ const AnimeDetails = ({ anime }: Props) => {
           <div className="text-md mt-2 max-w-full md:max-w-2xl">{anime.synopsis}</div>
         </div>
         <div className="flex flex-col justify-end items-end gap-4">
-          <Image src={anime.images.jpg.large_image_url || anime.images.jpg.image_url} alt={anime.title} width={450} height={300}
-          className="border-2 rounded-2xl border-primary"
-          />
+          <Link href={anime.trailer.url} className="place-self-center" target="_blank">
+            <div className="group border-2 rounded-2xl border-primary mt-8 w-[450px] h-[600px] relative overflow-hidden">
+              <Play className="absolute inset-0 m-auto w-16 h-16 text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"/>
+              <Image src={anime.images.jpg.large_image_url || anime.images.jpg.image_url} alt={anime.title} fill
+                className="rounded-2xl transition-all duration-500 hover:blur-sm cursor-pointer"
+              />
+            </div>
+          </Link>
           <div>trailer</div>
           <div></div>
         </div>
