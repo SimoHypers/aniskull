@@ -2,14 +2,25 @@ import { Star } from "lucide-react";
 import Image from "next/image";
 
 export interface AnimeProp{
-    mal_id: string;
-    title: string;
-    image_url: string;
-    episodes: number;
-    score: string;
-    rank: number;
-    year: number;
-    status: string;
+  title: string;
+  title_japanese: string;
+  url: string;
+  score: string;
+  scored_by: string;
+  rating: string;
+  status: string;
+  season: string;
+  year: string;
+  synopsis: string;
+  images: {
+    jpg: {
+      image_url: string;
+      large_image_url: string;
+    }
+  }
+  trailer: {
+    url: string;
+  }
 }
 
 interface Prop{
@@ -22,7 +33,7 @@ const AnimeCard = ({anime}: Prop) => {
     <div className="rounded-lg border bg-card text-card-foreground shadow-sm overflow-hidden h-full transition-all duration-200 hover:shadow-lg hover:scale-[1.02] cursor-pointer">
         <div className="aspect-[2/3] relative">
             <Image
-                src={anime.image_url || ''} //Add a fallback image later
+                src={anime.images.jpg.large_image_url || anime.images.jpg.image_url || "/assets/home/frieren.webp"} //Add a fallback image later
                 alt={anime.title}
                 fill
                 objectFit="cover"
