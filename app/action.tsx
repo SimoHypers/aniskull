@@ -12,16 +12,6 @@ export async function fetchAnime(page: number){
 
     const data = await response.json();
 
-    const simplifiedData = data.data.map((anime: any) => ({
-        mal_id: anime.mal_id,
-        title: anime.title,
-        image_url: anime.images.jpg.image_url,
-        episodes: anime.episodes,
-        score: anime.score,
-        status: anime.status,
-        year: anime.year,
-    }))
-
     return data.data;
 }
 
