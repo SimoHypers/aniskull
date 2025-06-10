@@ -9,7 +9,6 @@ import Link from "next/link";
 
 
 
-
 const search = () => {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([])
