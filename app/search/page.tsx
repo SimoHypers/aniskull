@@ -5,6 +5,7 @@ import { Button } from "../components/ui/button"
 import { useState } from "react"
 import { fetchSearchAnime } from "../action";
 import AnimeCard from "../components/AnimeCard";
+import Link from "next/link";
 
 
 
@@ -39,10 +40,13 @@ const search = () => {
           <Button className="w-20 rounded-l-none hover:bg-primary/80 lg:py-6" onClick={handleSearch}>Search</Button>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 w-full">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 w-full">
           {results.map((anime: any, index: number) => (
-            <AnimeCard key={`${anime.mal_id}-${index}`} anime={anime} index={0} />
-          ))}
+            <Link key={`${anime.mal_id}-${index}`} href={`/anime/${anime.mal_id}`}>
+              <AnimeCard anime={anime} index={0} />
+            </Link>
+            
+          ))} 
         </div>
       </div>
     </div>

@@ -2,6 +2,7 @@ import { Star } from "lucide-react";
 import Image from "next/image";
 
 export interface AnimeProp{
+  mal_id: string;
   title: string;
   title_japanese: string;
   url: string;
