@@ -2,7 +2,7 @@
 
 A modern anime search and discovery website built with Next.js 15, allowing users to explore anime series and movies with detailed information, ratings, and trailers.
 
-![logo](/aniskull/public/assets/logo/aniskull_logo.png)
+![logo](public/assets/logo/aniskull_logo.png)
 
 ## ✨ Features
 
