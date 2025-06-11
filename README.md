@@ -26,37 +26,11 @@ A modern anime search and discovery website built with Next.js 15, allowing user
 - **API**: Jikan API (MyAnimeList API)
 - **Deployment**: Vercel
 
-## 🚀 Getting Started
+## 🚀 Live Demo
 
-### Prerequisites
+**🌐 Visit the live application**: [https://aniskull.vercel.app/](https://aniskull.vercel.app/)
 
-- Node.js 18+ 
-- npm or yarn
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/SimoHypers/aniskull.git
-   cd aniskull
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   # or
-   yarn install
-   ```
-
-3. **Run the development server**
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   ```
-
-4. **Open your browser**
-   Navigate to [http://localhost:3000](http://localhost:3000) to see the application.
+Start exploring anime right away - no installation required!
 
 ## 🎯 How to Use
 
@@ -105,29 +79,7 @@ This project uses the [Jikan API](https://jikan.moe/), which provides access to 
 
 ## 🚀 Deployment
 
-The project is configured for easy deployment on Vercel:
-
-1. **Push to GitHub**
-   ```bash
-   git add .
-   git commit -m "Initial commit"
-   git push origin main
-   ```
-
-2. **Deploy on Vercel**
-   - Connect your GitHub repository to Vercel
-   - Vercel will automatically detect it's a Next.js project
-   - Deploy with default settings
-
-## 🤝 Contributing
-
-Contributions are welcome! Here's how you can help:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+This project is deployed and hosted on Vercel for optimal performance and reliability.
 
 ## 📝 License
 
@@ -145,7 +97,7 @@ This project is open source and available under the [MIT License](LICENSE).
 If you have any questions or suggestions, feel free to reach out:
 
 - GitHub: [@SimoHypers](https://github.com/SimoHypers)
-- Project Link: [https://github.com/SimoHypers/aniskull](https://github.com/SimoHypers/aniskull)
+- Project Link: [https://aniskull.vercel.app/](https://aniskull.vercel.app/)
 
 ---
 
