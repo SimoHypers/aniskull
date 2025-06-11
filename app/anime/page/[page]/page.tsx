@@ -4,11 +4,12 @@ import Link from "next/link";
 import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
 
 interface PageProps {
-  params: { page: string };
+  params: Promise<{ page: string }>;
 }
 
 export default async function AnimePage({ params }: PageProps) {
-  const currentPage = parseInt(params.page) || 1;
+  const { page } = await params;
+  const currentPage = parseInt(page) || 1;
   const data = await fetchAnime(currentPage);
 
   return (
