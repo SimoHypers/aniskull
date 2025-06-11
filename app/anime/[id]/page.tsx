@@ -1,12 +1,6 @@
 import { notFound } from "next/navigation";
 import AnimeDetails from "@/app/components/AnimeDetails";
 
-interface AnimeDetailProps {
-  params: {
-    id: string;
-  };
-}
-
 async function getAnimeDetails(id: string) {
   const response = await fetch(`https://api.jikan.moe/v4/anime/${id}`);
 
@@ -16,8 +10,10 @@ async function getAnimeDetails(id: string) {
   return data.data;
 }
 
-export default async function AnimePage({ params }: AnimeDetailProps) {
-  const anime = await getAnimeDetails(params.id);
+export default async function AnimePage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const anime = await getAnimeDetails(id);
+  
   if (!anime) return notFound();
 
   return <AnimeDetails anime={anime} />;
